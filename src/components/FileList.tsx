@@ -1,6 +1,4 @@
 import { DirectoryData, FileData } from '../helpers/fetchS3DirectoryContents';
-
-import './FileList.scss';
 import FileItem from './FileItem';
 
 interface FileListProps {

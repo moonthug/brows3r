@@ -6,21 +6,26 @@ import App from './App';
 
 import './index.scss';
 
-const CONFIG = {
-  S3_BUCKET: 'hero-swagger-documentation',
-  S3_BUCKET_REGION: 'eu-west-1',
-  S3_BUCKET_URL: 'http://swagger.qa.usehero.com'
+
+const {
+  REACT_APP_S3_BUCKET,
+  REACT_APP_S3_BUCKET_REGION,
+  REACT_APP_S3_BUCKET_URL
+} = process.env;
+
+if (!REACT_APP_S3_BUCKET || !REACT_APP_S3_BUCKET_URL) {
+  throw new Error('Config values missing');
 }
 
 const s3Client = new S3({
-  region: CONFIG.S3_BUCKET_REGION
+  region: REACT_APP_S3_BUCKET_REGION
 });
 
 ReactDOM.render(
   <React.StrictMode>
     <App
-      s3BaseURL={CONFIG.S3_BUCKET_URL}
-      fetchS3DirectoryContents={fetchS3DirectoryContentsFactory(s3Client, CONFIG.S3_BUCKET)}
+      s3BaseURL={REACT_APP_S3_BUCKET_URL}
+      fetchS3DirectoryContents={fetchS3DirectoryContentsFactory(s3Client, REACT_APP_S3_BUCKET)}
     />
   </React.StrictMode>,
   document.getElementById('root')

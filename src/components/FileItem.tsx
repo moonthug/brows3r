@@ -5,6 +5,7 @@ import Icon from './Icon';
 import './FileItem.scss';
 import apiIconSrc from './icons/api.svg'
 import fileIconSrc from './icons/file.svg'
+import upDirectoryLogoSrc from './icons/back.svg';
 import directoryLogoSrc from './icons/directory.svg';
 
 interface FileItemProps {
@@ -28,6 +29,12 @@ function getExtensionIconSrc(extension: string) {
   }
 }
 
+function getDirectoryIconSrc(directoryData: DirectoryData) {
+  return directoryData.parent === true
+    ? upDirectoryLogoSrc
+    : directoryLogoSrc;
+}
+
 function isFile(item: DirectoryData | FileData): item is FileData {
   return (item as FileData).bytes !== undefined;
 }
@@ -37,14 +44,14 @@ function FileItem({ s3BaseURL, itemData }: FileItemProps) {
     ? (
       <>
         <Icon icon={getExtensionIconSrc(itemData.extension)} />
-        <a href={`${s3BaseURL}/${itemData.path}`} target='_blank'>{itemData.name}</a>
-        <p>{bytesToSize(itemData.bytes)}</p>
-        <p>{itemData.lastModified.toLocaleTimeString()}</p>
+        <a className='FileName' href={`${s3BaseURL}/${itemData.path}`} target='_blank'>{itemData.name}</a>
+        <p className='FileSize'>{bytesToSize(itemData.bytes)}</p>
+        <p className='FileLastModified'>{itemData.lastModified.toISOString()}</p>
       </>
     )
     : (
       <>
-        <Icon icon={directoryLogoSrc} />
+        <Icon icon={getDirectoryIconSrc(itemData)} />
         <Link to={`/${itemData.path}`}>{itemData.name}</Link>
       </>
     );

@@ -9,6 +9,7 @@ export interface DirectoryContents {
 export interface DirectoryData {
   name: string;
   path?: string;
+  parent?: boolean;
 }
 
 export interface FileData {
@@ -48,6 +49,7 @@ async function fetchS3DirectoryContents (s3Client: S3, bucket: string, prefix: s
 
     directories.push({
       name: '..',
+      parent: true,
       path
     });
   }
