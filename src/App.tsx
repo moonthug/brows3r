@@ -1,24 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router';
 
-function App() {
+import FileBrowser from './components/FileBrowser';
+import { FetchS3DirectoryContentsFunction } from './helpers/fetchS3DirectoryContents';
+import './App.scss';
+
+interface AppProps {
+  s3BaseURL: string;
+  fetchS3DirectoryContents: FetchS3DirectoryContentsFunction;
+}
+
+function App({ s3BaseURL, fetchS3DirectoryContents }: AppProps) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Route path='/:dir?' component={(route: RouteComponentProps) => {
+          return <FileBrowser
+            s3BaseURL={s3BaseURL}
+            fetchS3DirectoryContents={fetchS3DirectoryContents}
+            route={route}
+          />
+        }}/>
+      </Router>
     </div>
   );
 }

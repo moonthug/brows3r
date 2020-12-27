@@ -1,0 +1,15 @@
+.FileBrowser {
+  .FileList {
+    visibility: visible;
+    opacity: 100;
+    transition: visibility 0s linear 0.1s, opacity 0.1s linear;
+  }
+}
+
+.FileBrowser.isLoading {
+  .FileList {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.1s, opacity 0.1s linear;
+  }
+}
