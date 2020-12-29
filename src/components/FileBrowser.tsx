@@ -33,7 +33,7 @@ class FileBrowser extends React.Component<FileBrowserProps, FileBrowserState> {
   }
 
   async componentWillReceiveProps(nextProps: Readonly<FileBrowserProps>, nextContext: any) {
-    this.setState({ currentDirectory: nextProps.route.location.pathname }, () => {
+    this.setState({ currentDirectory: this.props.route.location.pathname }, () => {
       this.fetchDirectoryContents();
     })
   }

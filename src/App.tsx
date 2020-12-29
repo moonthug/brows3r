@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router, HashRouter } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
 
 import FileBrowser from './components/FileBrowser';
@@ -14,7 +14,7 @@ interface AppProps {
 function App({ s3BaseURL, fetchS3DirectoryContents }: AppProps) {
   return (
     <div className="App">
-      <Router>
+      <HashRouter>
         <Route path='/:dir?' component={(route: RouteComponentProps) => {
           return <FileBrowser
             s3BaseURL={s3BaseURL}
@@ -22,7 +22,7 @@ function App({ s3BaseURL, fetchS3DirectoryContents }: AppProps) {
             route={route}
           />
         }}/>
-      </Router>
+      </HashRouter>
     </div>
   );
 }

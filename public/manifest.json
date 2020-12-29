@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "brows3r",
+  "name": "A ui for browsing s3 buckets",
   "icons": [
     {
       "src": "favicon.ico",
