@@ -29,14 +29,10 @@ async function fetchS3DirectoryContents (s3Client: S3, bucket: string, prefix: s
     Prefix: prefix
   }
 
+  // @TODO: Make this paged?
   const response: ListObjectsV2Output = await s3Client
     .makeUnauthenticatedRequest('listObjectsV2', params)
     .promise();
-
-  // let continuationToken = undefined;
-  // if (response.IsTruncated === true && response.ContinuationToken) {
-  //   continuationToken = response.ContinuationToken;
-  // }
 
   let files = new Array<FileData>();
   let directories = new Array<DirectoryData>();

@@ -62,12 +62,13 @@ class FileBrowser extends React.Component<FileBrowserProps, FileBrowserState> {
     const { currentDirectory, directoryContents, isLoading } = this.state;
 
     return (
-      <div className={'FileBrowser' + (isLoading ? ' isLoading' : '') }>
+      <div>
         <h2>Path: {currentDirectory}</h2>
         <FileList
           s3BaseURL={s3BaseURL}
           directories={directoryContents.directories}
           files={directoryContents.files}
+          isLoading={isLoading}
         />
       </div>
     );

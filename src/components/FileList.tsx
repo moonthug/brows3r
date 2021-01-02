@@ -5,12 +5,15 @@ interface FileListProps {
   s3BaseURL: string;
   directories: DirectoryData[];
   files: FileData[];
+  isLoading: boolean;
 }
 
-function FileList({ s3BaseURL, directories, files }: FileListProps) {
+function FileList({ s3BaseURL, directories, files, isLoading }: FileListProps) {
   const items = [...directories, ...files];
+
+  const className = isLoading ? 'FileItemContainer isLoading' : 'FileItemContainer'
   return (
-    <div className="FileList">
+    <div className={className}>
         { items.map((item: DirectoryData | FileData, index) =>
           <FileItem
             s3BaseURL={s3BaseURL}

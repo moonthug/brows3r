@@ -1,13 +1,9 @@
-.FileBrowser {
-  .FileList {
-    opacity: 100%;
-    transition: visibility 0s linear 0.1s, opacity 0.1s linear;
-  }
+.FileList {
+  opacity: 100%;
+  transition: opacity 0s linear 0.1s, opacity 0.1s linear;
 }
 
-.FileBrowser.isLoading {
-  .FileList {
-    opacity: 50%;
-    transition: visibility 0s linear 0.1s, opacity 0.1s linear;
-  }
+.FileList.isLoading {
+  opacity: 50%;
+  transition: opacity 0s linear 0.1s, opacity 0.1s linear;
 }
