@@ -1,9 +1,9 @@
 .FileList {
   opacity: 100%;
   transition: opacity 0s linear 0.1s, opacity 0.1s linear;
-}
 
-.FileList.isLoading {
-  opacity: 50%;
-  transition: opacity 0s linear 0.1s, opacity 0.1s linear;
+  .isLoading {
+    opacity: 50%;
+    transition: opacity 0s linear 0.1s, opacity 0.1s linear;
+  }
 }
