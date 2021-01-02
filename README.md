@@ -12,15 +12,23 @@ Into the `<head>`
 <link href="https://brows3r-js.s3.eu-west-2.amazonaws.com/static/css/main.chunk.css" rel="stylesheet">
 ```
 
-Into the the `<body>`
+Into into the `<body>`
 
 ```html
 <div id="brows3r-root"></div>
 <script>
 window.BROWS3R = {
-  S3_BUCKET: "string",
-  S3_BUCKET_REGION: "string",
-  S3_BUCKET_URL: "string"
+  s3BucketName: "myBucket",
+  s3BucketRegion: "eu-west-1",
+  s3BucketUrl: "http://downloads.mywebsite.com",
+  getExtensionIconSrcFn: function(extension) {
+    switch (extension) {
+      case 'html':
+        return '/icons/api.svg';
+      default:
+        return '/icons/file.svg';
+    }
+  }  
 }
 </script>
 <script src="https://brows3r-js.s3.eu-west-2.amazonaws.com/static/js/bundle.js"></script>
@@ -35,3 +43,8 @@ At the moment, to host `brows3r`, you'll need to deploy the contents of `./build
 i.e.
 ```sh
 $ aws s3 sync ./build s3://<BUCKET_NAME>
+```
+
+## Demo
+
+[https://brows3r-js.s3.eu-west-2.amazonaws.com/index.html#/](https://brows3r-js.s3.eu-west-2.amazonaws.com/index.html#/)

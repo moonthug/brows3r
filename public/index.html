@@ -17,10 +17,19 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script>
+
       window.BROWS3R = {
-        S3_BUCKET: 'filebrows3r-bucket',
-        S3_BUCKET_REGION: 'eu-west-2',
-        S3_BUCKET_URL: 'https://filebrows3r-bucket.s3.eu-west-2.amazonaws.com',
+        getExtensionIconSrcFn: function(extension) {
+          switch (extension) {
+            case 'html':
+              return '/icons/api.svg';
+            default:
+              return '/icons/file.svg';
+          }
+        },
+        s3bucketName: 'filebrows3r-bucket',
+        s3BucketRegion: 'eu-west-2',
+        s3BucketUrl: 'https://filebrows3r-bucket.s3.eu-west-2.amazonaws.com',
       }
     </script>
   </body>

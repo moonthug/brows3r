@@ -2,12 +2,13 @@ import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { FetchS3DirectoryContentsFunction, DirectoryContents } from '../helpers/fetchS3DirectoryContents';
 import FileList from './FileList';
-
+import { GetExtensionIconSrcFunction } from './FileItem';
 import './FileBrowser.scss';
 
 interface FileBrowserProps {
   s3BaseURL: string;
   fetchS3DirectoryContents: FetchS3DirectoryContentsFunction;
+  getExtensionIconSrc: GetExtensionIconSrcFunction;
   route: RouteComponentProps
 }
 
@@ -58,8 +59,8 @@ class FileBrowser extends React.Component<FileBrowserProps, FileBrowserState> {
   }
 
   render() {
-    const { s3BaseURL } = this.props;
-    const { currentDirectory, directoryContents, isLoading } = this.state;
+    const { s3BaseURL, getExtensionIconSrc } = this.props;
+    const { currentDirectory, directoryContents, isLoading, } = this.state;
 
     return (
       <div>
@@ -68,6 +69,7 @@ class FileBrowser extends React.Component<FileBrowserProps, FileBrowserState> {
           s3BaseURL={s3BaseURL}
           directories={directoryContents.directories}
           files={directoryContents.files}
+          getExtensionIconSrc={getExtensionIconSrc}
           isLoading={isLoading}
         />
       </div>
